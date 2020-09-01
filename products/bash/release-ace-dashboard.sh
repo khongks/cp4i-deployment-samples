@@ -15,6 +15,7 @@
 # PARAMETERS:
 #   -n : <namespace> (string), Defaults to "cp4i"
 #   -r : <dashboard-release-name> (string), Defaults to "ace-dashboard-demo"
+#   -s : storage class, Defaults to "ibmc-file-gold-gid"
 #
 # USAGE:
 #   With defaults values
@@ -24,17 +25,20 @@
 #     ./release-ace-dashboard.sh -n cp4i-prod -r prod
 
 function usage {
-    echo "Usage: $0 -n <namespace> -r <dashboard-release-name>"
+    echo "Usage: $0 -n <namespace> -r <dashboard-release-name> -s <storage-class>"
 }
 
 namespace="cp4i"
 dashboard_release_name="ace-dashboard-demo"
+storageclass="ibmc-file-gold-gid"
 
-while getopts "n:r:" opt; do
+while getopts "n:r:s:" opt; do
   case ${opt} in
     n ) namespace="$OPTARG"
       ;;
     r ) dashboard_release_name="$OPTARG"
+      ;;
+    s ) storageclass="$OPTARG"
       ;;
     \? ) usage; exit
       ;;
@@ -58,7 +62,7 @@ spec:
     use: CloudPakForIntegrationNonProduction
   replicas: 1
   storage:
-    class: ibmc-file-gold-gid
+    class: ${storageclass}
     type: persistent-claim
   version: 11.0.0
 EOF
