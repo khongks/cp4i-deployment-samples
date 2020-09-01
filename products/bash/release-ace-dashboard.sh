@@ -13,7 +13,7 @@
 #   - Logged into cluster on the OC CLI (https://docs.openshift.com/container-platform/4.4/cli_reference/openshift_cli/getting-started-cli.html)
 #
 # PARAMETERS:
-#   -n : <namespace> (string), Defaults to "cp4i"
+#   -n : <namespace> (string), Defaults to "ace"
 #   -r : <dashboard-release-name> (string), Defaults to "ace-dashboard-demo"
 #   -s : storage class, Defaults to "ibmc-file-gold-gid"
 #
